@@ -49,7 +49,7 @@ client.on('messageCreate', async function(msg){
   
     try {
         // Kiểm tra nếu có kí tự '!'
-      if(msg.channel.name =='gpt'){
+      if(msg.channel.name =='gpt' && msg.author.username != 'GPTWibuu'){
         // if (msg.content.includes('!')) {
         //     const result = await getImage(msg.content);
         //     console.log(result)
