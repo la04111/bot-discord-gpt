@@ -15,7 +15,7 @@ require('dotenv').config()
 
     return response.data.data[0].url;
   } catch (error) {
-    console.log(error);
+ 
   }
 };
 const getChat = async (text) => {
@@ -29,7 +29,7 @@ const getChat = async (text) => {
 
     return response.data.choices[0].message.content;
   } catch (error) {
-    console.log(error);
+ 
   }
 };
 const { Client, Intents,MessageEmbed  } = require('discord.js');
@@ -46,7 +46,6 @@ client.on('ready', () => {
 client.on('messageCreate', async function(msg){
     // Bỏ qua tin nhắn từ bot
     if (msg.author.bot) return;
-    
   
     try {
         // Kiểm tra nếu có kí tự '!'
@@ -54,18 +53,15 @@ client.on('messageCreate', async function(msg){
         if (msg.content.includes('!')) {
             const result = await getImage(msg.content);
             console.log(result)
-            if(result){
+           
             const embed = new MessageEmbed().setImage(result);
             // Gửi ảnh
             msg.reply({ embeds: [embed] })
-            }
+        
         } else {
-            const result = await getChat(msg.content);
-            // Gửi kết quả trò chuyện
-            console.log(result)
-          if(result){
-            msg.reply(result)
-            }
+       
+            msg.reply(await getChat(msg.content));
+       
           }
           }
     } catch (e) {
