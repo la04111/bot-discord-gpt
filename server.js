@@ -33,15 +33,15 @@ client.on('messageCreate', async function(msg){
   
     try {
         // Kiểm tra nếu có kí tự '!'
-      if(msg.channel.name =='gpt'){
-        if (msg.content.includes('!')) {
-            const result = await getImage(msg.content);
-            const embed = new MessageEmbed().setImage(result);
-            // Gửi ảnh
-            msg.reply({ embeds: [embed] }).then(msg => {
-                setTimeout(() => msg.delete(), 600000);
-            }).catch();
-        } else {
+      // if(msg.channel.name =='gpt'){
+      //   if (msg.content.includes('!')) {
+      //       const result = await getImage(msg.content);
+      //       const embed = new MessageEmbed().setImage(result);
+      //       // Gửi ảnh
+      //       msg.reply({ embeds: [embed] }).then(msg => {
+      //           setTimeout(() => msg.delete(), 600000);
+      //       }).catch();
+      //   } else {
             const result = await getChat(msg.content);
             // Gửi kết quả trò chuyện
           if(result){
@@ -49,8 +49,8 @@ client.on('messageCreate', async function(msg){
                 setTimeout(() => msg.delete(), 600000);
             }).catch();
             }
-          }
-          }
+        //  }
+        //  }
     } catch (e) {
         // In ra thông báo lỗi
     }
