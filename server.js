@@ -1,68 +1,35 @@
 require('dotenv').config()
- const { Configuration, OpenAIApi } = require("openai");
- const configuration = new Configuration({
-  apiKey: process.env.API,
-});
-
- const openai = new OpenAIApi(configuration);
- const getImage = async (text) => {
-  try {
-    const response = await openai.createImage({
-      prompt: text,
-      n: 1,
-      size: "512x512",
-    });
-
-    return response.data.data[0].url;
-  } catch (error) {
- 
-  }
-};
-const getChat = async (text) => {
-  try {
-    const response = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: [
-        { role: "user", content: text }
-      ],
-    });
-
-    return response.data.choices[0].message.content;
-  } catch (error) {
- 
-  }
-};
 const { Client, Intents,MessageEmbed  } = require('discord.js');
 const client = new Client({
     intents: 131071,
     partials: ['CHANNEL', 'GUILD_MEMBER', 'GUILD_SCHEDULED_EVENT', 'MESSAGE', 'REACTION', 'USER']
 })
+const { getImage, getChat } = require("./Helper/functions");
+  
 
 
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
-client.on('messageCreate', async function(msg){
+client.on('messageCreate', async msg =>{
     // Bỏ qua tin nhắn từ bot
    // if (msg.author.bot) return;
   
     try {
         // Kiểm tra nếu có kí tự '!'
       if(msg.channel.name =='gpt' && msg.author.username != 'GPTWibuu'){
-        // if (msg.content.includes('!')) {
-        //     const result = await getImage(msg.content);
-        //     console.log(result)
+        if (msg.content.includes('!')) {
+            const result = await getImage(msg.content);
            
-        //     const embed = new MessageEmbed().setImage(result);
-        //     // Gửi ảnh
-        //     msg.reply({ embeds: [embed] })
+            const embed = new MessageEmbed().setImage(result);
+            // Gửi ảnh
+            msg.reply({ embeds: [embed] })
         
-        // } else {
-       
-            // msg.reply(await getChat(msg.content));
-            msg.reply(msg.content);
-          // }
+        } else {
+          const result = await getChat(msg.content);
+          msg.reply(result)
+           }
            }
     } catch (e) {
         // In ra thông báo lỗi
