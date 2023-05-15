@@ -36,19 +36,18 @@ client.on('messageCreate', async function(msg){
       if(msg.channel.name =='gpt'){
         if (msg.content.includes('!')) {
             const result = await getImage(msg.content);
+            console.log(result)
+            if(result){
             const embed = new MessageEmbed().setImage(result);
             // Gửi ảnh
-            msg.reply({ embeds: [embed] }).then(msg => {
-                setTimeout(() => msg.delete(), 600000);
-            }).catch();
+            msg.reply({ embeds: [embed] })
+            }
         } else {
             const result = await getChat(msg.content);
             // Gửi kết quả trò chuyện
             console.log(result)
           if(result){
-            msg.reply(result).then(msg => {
-                setTimeout(() => msg.delete(), 600000);
-            }).catch();
+            msg.reply(result)
             }
           }
           }
