@@ -16,7 +16,7 @@ const getImage = async (text) => {
 
     return response.data.data[0].url;
   } catch (error) {
-    console.log(error);
+   
   }
 };
 
@@ -31,7 +31,7 @@ const getChat = async (text) => {
 
     return response.data.choices[0].message.content;
   } catch (error) {
-    console.log(error);
+  
   }
 };
 
