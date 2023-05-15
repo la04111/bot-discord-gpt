@@ -45,25 +45,25 @@ client.on('ready', () => {
 });
 client.on('messageCreate', async function(msg){
     // Bỏ qua tin nhắn từ bot
-    if (msg.author.bot) return;
+   // if (msg.author.bot) return;
   
     try {
         // Kiểm tra nếu có kí tự '!'
       if(msg.channel.name =='gpt'){
-        if (msg.content.includes('!')) {
-            const result = await getImage(msg.content);
-            console.log(result)
+        // if (msg.content.includes('!')) {
+        //     const result = await getImage(msg.content);
+        //     console.log(result)
            
-            const embed = new MessageEmbed().setImage(result);
-            // Gửi ảnh
-            msg.reply({ embeds: [embed] })
+        //     const embed = new MessageEmbed().setImage(result);
+        //     // Gửi ảnh
+        //     msg.reply({ embeds: [embed] })
         
-        } else {
+        // } else {
        
-            msg.reply(await getChat(msg.content));
-       
-          }
-          }
+            // msg.reply(await getChat(msg.content));
+            msg.reply(msg.content);
+          // }
+           }
     } catch (e) {
         // In ra thông báo lỗi
     }
