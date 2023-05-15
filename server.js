@@ -44,6 +44,7 @@ client.on('messageCreate', async function(msg){
         } else {
             const result = await getChat(msg.content);
             // Gửi kết quả trò chuyện
+            console.log(result)
           if(result){
             msg.reply(result).then(msg => {
                 setTimeout(() => msg.delete(), 600000);
