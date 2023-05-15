@@ -40,19 +40,19 @@ client.on('messageCreate', async function(msg){
             // Gửi ảnh
             msg.reply({ embeds: [embed] }).then(msg => {
                 setTimeout(() => msg.delete(), 600000);
-            }).catch(console.error);
+            }).catch();
         } else {
             const result = await getChat(msg.content);
             // Gửi kết quả trò chuyện
           if(result){
             msg.reply(result).then(msg => {
                 setTimeout(() => msg.delete(), 600000);
-            }).catch(console.error);
-            }else   msg.reply(msg.content)
+            }).catch();
+            }
           }
           }
     } catch (e) {
-        console.error(e); // In ra thông báo lỗi
+        // In ra thông báo lỗi
     }
     
 });
