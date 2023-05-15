@@ -1,20 +1,37 @@
 require('dotenv').config()
  const { Configuration, OpenAIApi } = require("openai");
- const { getImage, getChat } = require("./Helper/functions");
+ const configuration = new Configuration({
+  apiKey: process.env.API,
+});
 
-// const express = require('express')
-// const bodyParser = require('body-parser');
+ const openai = new OpenAIApi(configuration);
+ const getImage = async (text) => {
+  try {
+    const response = await openai.createImage({
+      prompt: text,
+      n: 1,
+      size: "512x512",
+    });
 
-// const app = express()
-// app.use(bodyParser.json());
-// const port = 3000
+    return response.data.data[0].url;
+  } catch (error) {
+    console.log(error);
+  }
+};
+const getChat = async (text) => {
+  try {
+    const response = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: "user", content: text }
+      ],
+    });
 
-// const configuration = new Configuration({
-//     apiKey: process.env.API,
-//   });
-//   const openai = new OpenAIApi(configuration);
-//   module.exports = openai;
-
+    return response.data.choices[0].message.content;
+  } catch (error) {
+    console.log(error);
+  }
+};
 const { Client, Intents,MessageEmbed  } = require('discord.js');
 const client = new Client({
     intents: 131071,
@@ -61,7 +78,18 @@ client.on('messageCreate', async function(msg){
 //
 client.login(process.env.dis);
 
+// const express = require('express')
+// const bodyParser = require('body-parser');
 
+// const app = express()
+// app.use(bodyParser.json());
+// const port = 3000
+
+// const configuration = new Configuration({
+//     apiKey: process.env.API,
+//   });
+//   const openai = new OpenAIApi(configuration);
+//   module.exports = openai;
 // app.post('/', async (req, res) => {
 //    const text = req.body.cauhoi
 //     if (text) {
