@@ -59,7 +59,7 @@ client.on('messageCreate', async function(msg){
 
 
 //
-client.login('MTEwNzU0NDkyNTA1MjA5NjUxMw.GrEE4y.GLkBj9VENu9SgqTYcNbnhF7AMKFYWAnoID9G8o');
+client.login(process.env.dis);
 
 
 // app.post('/', async (req, res) => {
