@@ -48,7 +48,7 @@ client.on('messageCreate', async function(msg){
             msg.reply(result).then(msg => {
                 setTimeout(() => msg.delete(), 600000);
             }).catch(console.error);
-            }else   msg.reply("Vui lòng nhập lại")
+            }else   msg.reply(msg.content)
           }
           }
     } catch (e) {
