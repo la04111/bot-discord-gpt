@@ -21,13 +21,15 @@ client.on('messageCreate', async msg =>{
       if(msg.channel.name =='gpt' && msg.author.username != 'GPTWibuu'){
         if (msg.content.includes('!')) {
             const result = await getImage(msg.content);
-           
+            if(result.length != 0){
             const embed = new MessageEmbed().setImage(result);
             // Gửi ảnh
             msg.reply({ embeds: [embed] })
+          }
         
         } else {
           const result = await getChat(msg.content);
+          if(result.length != 0)
           msg.reply(result)
            }
            }
