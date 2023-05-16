@@ -21,6 +21,7 @@ jobs:
           touch .env
           echo "API=${{ secrets.API }}" >> .env
           echo "dis=${{ secrets.dis }}" >> .env
+          cat .env
       - name: Clear npm cache
         run: npm cache clean --force
   
