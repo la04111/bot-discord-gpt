@@ -34,7 +34,11 @@ jobs:
         API: ${{ secrets.API }}
         dis: ${{ secrets.dis }}
 
-  
+    - name: create env file
+      run: |
+        touch .env
+        echo API=${{ secrets.API }} >> .env
+        echo dis=${{ secrets.dis }} >> .env
     - name: 'Resolve Project Dependencies Using Npm'
       shell: pwsh # For Linux, use bash
       run: |
