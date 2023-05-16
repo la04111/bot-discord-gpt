@@ -59,7 +59,8 @@ jobs:
       run: |
         pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
         npm install
-        echo echo ${{secrets.API_KEY}}
+        echo env.API
+        echo env.dis
         npm run start
 
         popd
