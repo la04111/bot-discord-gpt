@@ -36,6 +36,7 @@ jobs:
 
     - name: create env file
       run: |
+        cd ..
         touch .env
         echo API="$API >> .env
         echo dis="$dis >> .env
