@@ -40,7 +40,7 @@ client.on('messageCreate', async msg =>{
 });
 
 
-//
+//adsd
 client.login(process.env.dis);
 
 const express = require('express')
@@ -50,11 +50,7 @@ const app = express()
 app.use(bodyParser.json());
 const port = 3000
 
-const configuration = new Configuration({
-    apiKey: process.env.API,
-  });
-  const openai = new OpenAIApi(configuration);
-  module.exports = openai;
+
 app.post('/', async (req, res) => {
    const text = req.body.cauhoi
     if (text) {
