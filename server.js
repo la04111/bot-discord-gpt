@@ -67,7 +67,7 @@ const bodyParser = require('body-parser');
 
 const app = express()
 app.use(bodyParser.json());
-const port = 3000
+const port = 80
 
 app.get('/', function(req, res) {
   res.send('ok');
@@ -117,7 +117,9 @@ app.post('/anh', async (req, res) => {
         }
       }
 })
+const cors = require('cors');
 
+app.use(cors());
 const os = require('os');
 
 const interfaces = os.networkInterfaces();
