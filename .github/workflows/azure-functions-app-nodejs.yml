@@ -32,6 +32,6 @@ jobs:
               npm install
       - name: Start
         run: |
-          npm run start
+            node server.js
 
 
