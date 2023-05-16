@@ -11,16 +11,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v1
+        with:
+          node-version: '>=20.x'
+      
       - name: Set up env file
         run: |
           touch .env
           echo "API=${{ secrets.API }}" >> .env
-          echo "dis=${{ secrets.dis }}" >> .env
+          echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" >> .env
       
+      - name: Load environment variables
+        run: npm install dotenv
       - name: Install dependencies and run script
-        env:
-          # Load the environment variables from the .env file using dotenv
-          $(dotenv)
         run: |
           npm install
-          node server.js
+          npx dotenv node my-script.js
