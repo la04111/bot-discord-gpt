@@ -26,10 +26,12 @@ jobs:
         run: npm cache clean --force
   
       - name: Load environment variables
-        run: npm install dotenv
-      - name: Install dependencies and run script
         run: |
-          npm install -g npm@7.24.2
-          npm install
+              npm install dotenv
+              npm install -g npm@7.24.2
+              npm install
+      - name: Start
+        run: |
           npm run start
+
 
