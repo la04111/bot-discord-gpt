@@ -124,13 +124,14 @@ const os = require('os');
 
 const interfaces = os.networkInterfaces();
 
-Object.keys(interfaces).forEach((ifaceName) => {
-  const iface = interfaces[ifaceName];
-  iface.forEach((alias) => {
-    if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
-      console.log(`Your IP address is: ${alias.address}`);
-    }
-  });
+const request = require('request');
+
+request('https://api.ipify.org', (err, res, body) => {
+  if (!err && res.statusCode === 200) {
+    console.log(`Your public IP address is: ${body}`);
+  } else {
+    console.error(err);
+  }
 });
 
 app.listen(port, () => {
