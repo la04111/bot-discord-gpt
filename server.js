@@ -14,11 +14,30 @@ client.on('ready', () => {
 });
 client.on('messageCreate', async msg =>{
     // Bỏ qua tin nhắn từ bot
-   // if (msg.author.bot) return;
+    if (msg.author.bot) return;
 
     try {
         // Kiểm tra nếu có kí tự '!'
       if(msg.channel.name =='gpt' && msg.author.username != 'GPTWibuu'){
+        if (msg.content.startsWith('?')) {
+          const voiceChannel = msg.member.voice.channel;
+           if (!voiceChannel) {
+              return msg.reply('Hãy vào kênh thoại trước khi chạy lệnh ?');
+          }
+          const permissions = voiceChannel.permissionsFor(msg.client.user);
+          if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
+              return msg.reply('Bot không có quyền truy cập vào kênh thoại của bạn');
+           }
+            const videoURL = msg.content.split(' ')[1];
+            const connection = await voiceChannel.join();
+            const stream = ytdl(videoURL, { filter: 'audioonly' });
+            const dispatcher = connection.play(stream);
+             dispatcher.on('finish', () => {
+              voiceChannel.leave();
+            });
+       
+        }
+        //GPT
         if (msg.content.includes('!')) {
             const result = await getImage(msg.content);
             if(result.length != 0){
