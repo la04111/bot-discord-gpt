@@ -21,7 +21,9 @@ jobs:
           touch .env
           echo "API=${{ secrets.API }}" >> .env
           echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" >> .env
-      
+      - name: Clear npm cache
+        run: npm cache clean --force
+  
       - name: Load environment variables
         run: npm install dotenv
       - name: Install dependencies and run script
