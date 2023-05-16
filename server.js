@@ -43,64 +43,64 @@ client.on('messageCreate', async msg =>{
 //adsd
 client.login(process.env.dis);
 
-const express = require('express')
-const bodyParser = require('body-parser');
+// const express = require('express')
+// const bodyParser = require('body-parser');
 
-const app = express()
-app.use(bodyParser.json());
-const port = 3000
+// const app = express()
+// app.use(bodyParser.json());
+// const port = 3000
 
-app.get('/', function(req, res) {
-  res.send('ok');
-});
-app.post('/', async (req, res) => {
-   const text = req.body.cauhoi
-    if (text) {
-        const resgetChat = await getChat(text);
-        if (resgetChat) {
-          try {
+// app.get('/', function(req, res) {
+//   res.send('ok');
+// });
+// app.post('/', async (req, res) => {
+//    const text = req.body.cauhoi
+//     if (text) {
+//         const resgetChat = await getChat(text);
+//         if (resgetChat) {
+//           try {
             
-           res.send(resgetChat)
-          } catch (error) {
-            // ignore the error
-          }
-        }
-      } else {
-        try {
-            res.send(
-            "Vui lòng hỏi bất kỳ điều gì sau /hoi"
-          );
-        } catch (error) {
-          // ignore the error
-        }
-      }
-})
+//            res.send(resgetChat)
+//           } catch (error) {
+//             // ignore the error
+//           }
+//         }
+//       } else {
+//         try {
+//             res.send(
+//             "Vui lòng hỏi bất kỳ điều gì sau /hoi"
+//           );
+//         } catch (error) {
+//           // ignore the error
+//         }
+//       }
+// })
 
-app.post('/anh', async (req, res) => {
-   const text = req.body.cauhoi
-    if (text) {
-        const resgetChat = await getImage(text);
-        if (resgetChat) {
-          try {
+// app.post('/anh', async (req, res) => {
+//    const text = req.body.cauhoi
+//     if (text) {
+//         const resgetChat = await getImage(text);
+//         if (resgetChat) {
+//           try {
          
-           res.send(resgetChat)
-          } catch (error) {
-            // ignore the error
-          }
-        }
-      } else {
-        try {
-            res.send(
-            "Vui lòng hỏi bất kỳ điều gì sau /hoi"
-          );
-        } catch (error) {
-          // ignore the error
-        }
-      }
-})
+//            res.send(resgetChat)
+//           } catch (error) {
+//             // ignore the error
+//           }
+//         }
+//       } else {
+//         try {
+//             res.send(
+//             "Vui lòng hỏi bất kỳ điều gì sau /hoi"
+//           );
+//         } catch (error) {
+//           // ignore the error
+//         }
+//       }
+// })
 
 
 
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`)
-})
+// app.listen(port, () => {
+//   console.log(`Server listening at http://localhost:${port}`)
+// })
