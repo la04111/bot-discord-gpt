@@ -1,12 +1,11 @@
-name: Create Environment File
+name: My Workflow
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  create-env-file:
+  my-job:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -15,5 +14,13 @@ jobs:
       - name: Set up env file
         run: |
           touch .env
-          echo API=${{ secrets.API }} >> .env
-          echo dis=${{ secrets.dis }} >> .env
+          echo "API=${{ secrets.API }}" >> .env
+          echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" >> .env
+      
+      - name: Install dependencies and run script
+        env:
+          # Load the environment variables from the .env file using dotenv
+          $(dotenv)
+        run: |
+          npm install
+          node server.js
