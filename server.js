@@ -15,8 +15,7 @@ client.on('ready', () => {
 client.on('messageCreate', async msg =>{
     // Bỏ qua tin nhắn từ bot
    // if (msg.author.bot) return;
-   const hi = await fetch('https://bot-discord-gpt.onrender.com')
-    console.log(hi)
+
     try {
         // Kiểm tra nếu có kí tự '!'
       if(msg.channel.name =='gpt' && msg.author.username != 'GPTWibuu'){
