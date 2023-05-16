@@ -26,5 +26,7 @@ jobs:
         run: npm install dotenv
       - name: Install dependencies and run script
         run: |
+          npm install -g npm@7.24.2
           npm install
-          npx dotenv node my-script.js
+          npx dotenv node server.js
+
