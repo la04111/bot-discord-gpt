@@ -15,7 +15,8 @@ client.on('ready', () => {
 client.on('messageCreate', async msg =>{
     // Bỏ qua tin nhắn từ bot
    // if (msg.author.bot) return;
-  
+   const hi = await fetch('https://bot-discord-gpt.onrender.com')
+    console.log(hi)
     try {
         // Kiểm tra nếu có kí tự '!'
       if(msg.channel.name =='gpt' && msg.author.username != 'GPTWibuu'){
@@ -50,14 +51,16 @@ const app = express()
 app.use(bodyParser.json());
 const port = 3000
 
-
+app.get('/', function(req, res) {
+  res.send('ok');
+});
 app.post('/', async (req, res) => {
    const text = req.body.cauhoi
     if (text) {
         const resgetChat = await getChat(text);
         if (resgetChat) {
           try {
-            console.log(resgetChat)
+            
            res.send(resgetChat)
           } catch (error) {
             // ignore the error
@@ -80,7 +83,7 @@ app.post('/anh', async (req, res) => {
         const resgetChat = await getImage(text);
         if (resgetChat) {
           try {
-            console.log(resgetChat)
+         
            res.send(resgetChat)
           } catch (error) {
             // ignore the error
